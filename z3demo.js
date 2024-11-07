@@ -195,19 +195,20 @@ console.log("\nGENERATE ON FENCE");
 
 const on_fence_solver = new Solver();
 
-let x_rand = randomInRange(left, right);    // again, generating a new range
-let y_rand = randomInRange(top, bottom);    //  to give a more random feel
+// must be on TOP or LEFT fence
+let x_rand = randomInRange(left, right); // pick a random x-val   
+let y_rand = randomInRange(top, bottom); // ...and a random y-val to be used if x_rand == left
 
 on_fence_solver.add( 
     x.eq(x_rand),
     Or(
         And(    
-            Or(x.eq(left), x.eq(right)),    // x is on one of its borders
-            y.eq(y_rand)                    // y is random
+            x.eq(left),    // x is on the left fence
+            y.eq(y_rand)   // y is random
         ),
         And(
-            And(x.neq(left), x.neq(right)),         // x isn't on a border
-            y.eq(pickSide(y_rand, top, bottom))     // y is on one of its borders
+            x.neq(left),    // x isn't on left fence
+            y.eq(top)       // y is on top fence
         )
     )
 );
