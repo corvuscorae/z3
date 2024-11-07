@@ -2,7 +2,7 @@ import { init } from 'z3-solver';
 
 const { Context } = await init();
 const { Solver, Int, And, Or, Distinct } = new Context("main");
-const debug = true; // toggle testing
+const DEBUG = false; // toggle testing
 
 /*********************************************************************************
 /   CHILDREN AND PETS PUZZLE
@@ -57,10 +57,10 @@ const sue_val = puzzle_model.eval(sue);
 console.log(` > bob: ${bob_val}\n > mary: ${mary_val}\n > cathy: ${cathy_val}\n > sue: ${sue_val}`);
 
 // testing
-if(debug){
+if(DEBUG){
     const expectedOutput =  [ `2`,  `1`,   `4`, `3` ]; 
     const actualOutput = [`${bob_val}`, `${mary_val}`, `${cathy_val}`, `${sue_val}`];
-    console.log(checkOutput(expectedOutput, actualOutput) ? "PASSED\n" : "FAILED\n");
+    console.log(checkOutput(expectedOutput, actualOutput) ? "PASSED" : "FAILED");
 }
 
 /*********************************************************************************
@@ -146,7 +146,7 @@ const [x, y] = [Int.const("x"), Int.const("y")];
 const MULTIPLIER = 100; // used by randomRange when min/max is null
 
 /***** GENERATE INSIDE FENCE ****************************************************/
-console.log("GENERATE INSIDE FENCE");
+console.log("\nGENERATE INSIDE FENCE");
 
 const inside_fence_solver = new Solver();
 
@@ -180,18 +180,18 @@ let y_val = inside_fence_model.eval(y);
 console.log(` > (x, y): (${x_val}, ${y_val})`);
 
 //test
-if(debug){
+if(DEBUG){
     console.log(
         checkOutputRange(
             [`${x_val}`, `${y_val}`], 
             [left, right], 
             [top, bottom]
-        ) ? "PASSED\n" : "FAILED\n"
+        ) ? "PASSED" : "FAILED"
     );
 }
 
 /***** GENERATE ON FENCE ********************************************************/
-console.log("GENERATE ON FENCE");
+console.log("\nGENERATE ON FENCE");
 
 const on_fence_solver = new Solver();
 
@@ -223,19 +223,19 @@ y_val = on_fence_model.eval(y);
 console.log(` > (x, y): (${x_val}, ${y_val})`);
 
 //test
-if(debug){
+if(DEBUG){
     console.log(
         checkOutputRange(
             [`${x_val}`, `${y_val}`], 
             [left, right], 
             [top, bottom],
             "boundary"
-        ) ? "PASSED\n" : "FAILED\n"
+        ) ? "PASSED" : "FAILED"
     );
 }
 
 /***** GENERATE OUTSIDE FENCE ***************************************************/
-console.log("GENERATE OUTSIDE FENCE");
+console.log("\nGENERATE OUTSIDE FENCE");
 
 const outside_fence_solver = new Solver();
 
@@ -274,13 +274,13 @@ y_val = outside_fence_model.eval(y);
 console.log(` > (x, y): (${x_val}, ${y_val})`);
 
 //test
-if(debug){
+if(DEBUG){
     console.log(
         checkOutputRange(
             [`${x_val}`, `${y_val}`], 
             [left, right], 
             [top, bottom],
             "outside"
-        ) ? "PASSED\n" : "FAILED\n"
-);
+        ) ? "PASSED" : "FAILED"
+    );
 }
