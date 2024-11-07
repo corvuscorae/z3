@@ -19,6 +19,7 @@ A demonstration of Z3 SMT Solver in JavaScript
         - cannot be on a fence
 
 ### Next
+- [ ] make on fence generation less biased (generate more values along the top as well as the left)
 - [ ] refactor to output (x,y) pairs
 - [ ] add functionality to take constraints as inputs
 - [ ] rework for use in a game engine (such as Phaser)
