@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "z3-solver": "^4.13.3"
+  }
+}
